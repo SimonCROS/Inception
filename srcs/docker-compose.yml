@@ -1,18 +1,33 @@
 version: "3.9"
-
 services:
-    # web:
-    #     build: ./docker/web
-    #     ports:
-    #      - "5000:5000"
-    #     volumes:
-    #      - .:/code
-    mariadb:
-        container_name: mariadb
-        build: ./requirements/mariadb
-        ports:
-          - "3306:3306"
-        volumes:
-          - "database:/var/lib/mysql"
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    image: nginx:inception
+    restart: always
+    ports:
+      - 443:443
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    image: mariadb:inception
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - database:/var/lib/mysql
+  # wordpress:
+  #   container_name: wordpress
+  #   build: ./requirements/wordpress
+  #   image: wordpress:inception
+  #   restart: always
+  #   environment:
+  #     WORDPRESS_DB_HOST: db
+  #     WORDPRESS_DB_USER: exampleuser
+  #     WORDPRESS_DB_PASSWORD: examplepass
+  #     WORDPRESS_DB_NAME: exampledb
+  #   volumes:
+  #     - wordpress:/var/www/html
 volumes:
-    database:
+  wordpress:
+  database:

@@ -1,27 +1,30 @@
-NAME	:= inception
-DOCKER	:= docker-compose --project-directory=srcs -p $(NAME)
+override NAME	:= inception
+override DOCKER	:= docker-compose --project-directory=srcs -p $(NAME)
 
 build:
-	$(DOCKER) build
+	@$(DOCKER) build
 
 up:
-	$(DOCKER) up
+	@$(DOCKER) up -d
 
 down:
-	$(DOCKER) down
+	@$(DOCKER) down
 
 start:
-	$(DOCKER) start
+	@$(DOCKER) start
 
 stop:
-	$(DOCKER) stop
+	@$(DOCKER) stop
 
 restart:
-	$(DOCKER) stop
-	$(DOCKER) up -d
+	@$(DOCKER) stop
+	@$(DOCKER) up -d
+
+exec:
+	@$(DOCKER) exec $(c)
 
 run:
-	$(DOCKER) run $(c)
+	@$(DOCKER) run $(c)
 
 destroy:
-	$(DOCKER) down -v
+	@$(DOCKER) down -v
