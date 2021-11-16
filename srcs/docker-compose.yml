@@ -5,12 +5,17 @@ services:
     build: ./requirements/nginx
     image: nginx:inception
     restart: always
+    environment:
+      - PHP_FPM_HOST=php-fpm
+      - PHP_FPM_PORT=9000
     ports:
       - 443:443
     volumes:
-      - database:/var/www/html
+      - wordpress:/var/www/html
     networks:
       - backend
+    depends_on:
+      - php
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb
@@ -37,3 +42,4 @@ volumes:
   database:
 networks:
   backend:
+    driver: bridge
