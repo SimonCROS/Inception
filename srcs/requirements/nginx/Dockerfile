@@ -8,8 +8,6 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 		-keyout /etc/ssl/private/nginx-selfsigned.key \
 		-out /etc/ssl/certs/nginx-selfsigned.crt
 
-RUN chown -R www-data:www-data /var/www
-
 # RUN addgroup --gid 3000 --system app 
 # RUN adduser --uid 3000 --system --disabled-login --disabled-password --gid 3000 app
 

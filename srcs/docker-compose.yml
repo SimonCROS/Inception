@@ -15,7 +15,7 @@ services:
     networks:
       - backend
     depends_on:
-      - php
+      - wordpress
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb
