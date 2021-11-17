@@ -1,13 +1,25 @@
-FROM debian:buster
+FROM	debian:buster
 
-RUN apt-get update
-RUN apt-get install -y mariadb-server
+ARG		DB_CONNECTION
+ARG		DB_HOST
+ARG		DB_PORT
+ARG		DB_DATABASE
+ARG		DB_USERNAME
+ARG		DB_PASSWORD
 
-EXPOSE 3306
+RUN		apt-get update
+RUN		apt-get install -y mariadb-server
 
-LABEL version="1.0"
-LABEL description="MariaDB Server"
+EXPOSE	3306
 
-HEALTHCHECK CMD mariadb -e 'SELECT @@datadir;' || exit 1
+RUN		mkdir /var/run/mysqld && chown -R mysql:root /var/run/mysqld
 
-CMD ["mysqld"]
+RUN		service mysql start && mariadb -u root -e "\
+CREATE DATABASE "${DB_DATABASE}";\
+CREATE USER '"${DB_USERNAME}"'@'localhost' IDENTIFIED BY '"${DB_PASSWORD}"';\
+GRANT ALL PRIVILEGES ON "${DB_DATABASE}".* TO '"${DB_USERNAME}"'@'localhost';\
+FLUSH PRIVILEGES;"
+
+HEALTHCHECK	CMD mariadb -e 'SELECT @@datadir;' || exit 1
+
+CMD		["mysqld"]
