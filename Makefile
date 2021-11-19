@@ -1,10 +1,12 @@
-override NAME	:= inception
-override DOCKER	:= docker-compose --project-directory=srcs -p $(NAME)
+override NAME   := inception
+override DOCKER := docker-compose --project-directory=srcs -p $(NAME)
 
-build:
+
+
+build:	folders
 	@$(DOCKER) build
 
-up:
+up:	folders
 	@$(DOCKER) up -d
 
 down:
@@ -16,7 +18,7 @@ start:
 stop:
 	@$(DOCKER) stop
 
-restart:
+restart:folders
 	@$(DOCKER) stop
 	@$(DOCKER) up -d
 
@@ -28,3 +30,9 @@ run:
 
 destroy:
 	@$(DOCKER) down -v
+
+folders:
+	@mkdir -p /home/scros/data/database
+	@mkdir -p /home/scros/data/wordpress
+
+.PHONY:	build up down start stop restart exec run destroy folders
