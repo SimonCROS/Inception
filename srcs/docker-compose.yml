@@ -50,7 +50,17 @@ services:
       - backend
 volumes:
   wordpress:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/login/data/wordpress'
   database:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/login/data/database'
 networks:
   backend:
     driver: bridge
