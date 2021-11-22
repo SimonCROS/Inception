@@ -16,7 +16,7 @@ RUN		mkdir /run/php && chown -R www-data:www-data /var/www
 
 COPY	./config/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 COPY	./config/wp-config.php .
-COPY	./scripts/start_inception.sh .
+COPY	./scripts/start_inception.sh ./start_inception.sh
 
 EXPOSE	9000
 
