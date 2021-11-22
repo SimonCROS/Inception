@@ -57,13 +57,13 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/login/data/wordpress'
+      device: '/home/scros/data/wordpress'
   database:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/login/data/database'
+      device: '/home/scros/data/database'
 networks:
   backend:
     driver: bridge
