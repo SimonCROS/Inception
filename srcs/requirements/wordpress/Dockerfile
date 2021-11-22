@@ -23,7 +23,7 @@ ARG		WP_USER
 ARG		WP_EMAIL
 ARG		WP_PASSWORD
 
-RUN		wp --allow-root core install --url="$(WP_URL)" --title="$(WP_TITLE)" --admin_user="$(WP_USER)" --admin_email="$(WP_EMAIL)" --admin_password="$(WP_PASSWORD)"
+RUN		wp --allow-root core install --url="${WP_URL}" --title="${WP_TITLE}" --admin_user="${WP_USER}" --admin_email="${WP_EMAIL}" --admin_password="${WP_PASSWORD}"
 RUN		wp --allow-root user create test test@example.com
 
 EXPOSE	9000
