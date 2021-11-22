@@ -35,7 +35,7 @@ services:
     container_name: wordpress
     build:
       context: ./requirements/wordpress
-      arg:
+      args:
         - WP_USER=${WP_USER}
         - WP_PASSWORD=${WP_PASSWORD}
         - WP_TITLE=${WP_TITLE}
