@@ -16,16 +16,8 @@ RUN		mkdir /run/php && chown -R www-data:www-data /var/www
 
 COPY	./config/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 COPY	./config/wp-config.php .
-
-ARG		WP_URL
-ARG		WP_TITLE
-ARG		WP_USER
-ARG		WP_EMAIL
-ARG		WP_PASSWORD
-
-RUN		wp --allow-root core install --url="${WP_URL}" --title="${WP_TITLE}" --admin_user="${WP_USER}" --admin_email="${WP_EMAIL}" --admin_password="${WP_PASSWORD}"
-RUN		wp --allow-root user create test test@example.com
+COPY	./scripts/start-inception.sh .
 
 EXPOSE	9000
 
-CMD		["php-fpm7.3", "-F"]
+CMD		["start-inception.sh"]
