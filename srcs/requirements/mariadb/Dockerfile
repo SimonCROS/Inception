@@ -14,7 +14,6 @@ RUN		mkdir /var/run/mysqld \
 # &&		sed -i "s/127.0.0.1/0.0.0.0/g" /etc/mysql/mariadb.conf.d/50-server.cnf
 
 ARG		DB_HOST
-ARG		DB_PORT
 ARG		DB_NAME
 ARG		DB_USER
 ARG		DB_PASSWORD
