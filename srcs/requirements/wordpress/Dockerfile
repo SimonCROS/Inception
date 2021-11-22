@@ -20,4 +20,4 @@ COPY	./scripts/start-inception.sh .
 
 EXPOSE	9000
 
-CMD		["start-inception.sh"]
+CMD		["sh start-inception.sh"]
