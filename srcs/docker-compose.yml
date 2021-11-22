@@ -51,6 +51,8 @@ services:
       - wordpress:/var/www/html
     networks:
       - backend
+    depends_on:
+      - mariadb
 volumes:
   wordpress:
     driver: local
